@@ -8,11 +8,6 @@ import org.springframework.stereotype.Component;
 public class CourseDefaultValidator implements CourseValidator {
     @Override
     public boolean valid(CourseDto courseDto) {
-        return courseDto.getCourseName().endsWith("course") &&
-                courseDto.getCourseName().length() > 5 &&
-                courseDto.getCourseName().length() < 20 &&
-                courseDto.getTeacherName().length() > 0 &&
-                courseDto.getTeacherName().length() < 100 &&
-                !courseDto.getStudents().isEmpty();
+        return courseDto.getCourseName().endsWith("course") && courseDto.getTeacherName().length() < 100 && !courseDto.getStudents().isEmpty();
     }
 }

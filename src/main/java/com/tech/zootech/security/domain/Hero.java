@@ -2,10 +2,7 @@ package com.tech.zootech.security.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.Hibernate;
-
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Builder
 @Entity
@@ -14,6 +11,7 @@ import java.util.Objects;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode
 @Table(name = "heroes")
 public class Hero extends AbstractEntity {
     @Column(name = "first_name", nullable = false)
@@ -28,20 +26,11 @@ public class Hero extends AbstractEntity {
     @Column(name = "date_of_birth", nullable = false)
     private LocalDateTime dateOfBirth;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "continent_id")
     private Continent continent;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Hero hero = (Hero) o;
-        return id != null && Objects.equals(id, hero.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return getClass().hashCode();
-    }
+    @ManyToOne
+    @JoinColumn(name = "planet_id")
+    private Planet planet;
 }
