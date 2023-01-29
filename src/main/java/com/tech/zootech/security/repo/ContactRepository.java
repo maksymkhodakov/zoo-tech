@@ -10,8 +10,4 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.UUID;
 
 public interface ContactRepository extends JpaRepository<Contact, UUID>, JpaSpecificationExecutor<Contact> {
-    @Transactional
-    @Modifying
-    @Query("delete from Contact c where c.id = :id")
-    void delete(UUID id);
 }

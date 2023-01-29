@@ -43,7 +43,7 @@ public class ContinentServiceImpl implements ContinentService {
     public List<ContinentDto> getByPlanet(PlanetDto planetDto) {
         log.info("Getting continents by planet: {}", planetDto.getName());
         var planet = planetMapper.toEntity(planetDto);
-        var continents = continentRepo.findByPlanet(planet)
+        var continents = continentRepo.findByPlanet(planet.getId())
                 .orElseThrow(() -> new ContinentNotFoundException(
                         "Continents on planet" + planetDto.getName()+ " not found"
                 ));
