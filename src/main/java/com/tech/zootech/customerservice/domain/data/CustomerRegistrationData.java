@@ -15,10 +15,4 @@ public class CustomerRegistrationData implements ICustomer {
     private String firstName;
     private String lastName;
     private String email;
-    public CustomerRegistrationData(ICustomer iCustomer) {
-        this.id = iCustomer.getId();
-        this.firstName = iCustomer.getFirstName();
-        this.lastName = iCustomer.getLastName();
-        this.email = iCustomer.getEmail();
-    }
 }

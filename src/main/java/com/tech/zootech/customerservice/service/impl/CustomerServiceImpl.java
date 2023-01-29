@@ -2,10 +2,12 @@ package com.tech.zootech.customerservice.service.impl;
 
 import com.tech.zootech.customerservice.domain.data.CustomerRegistrationData;
 import com.tech.zootech.customerservice.domain.dto.CustomerDto;
+import com.tech.zootech.customerservice.domain.dto.CustomerFullName;
 import com.tech.zootech.customerservice.domain.entity.Customer;
 import com.tech.zootech.customerservice.repository.CustomerRepository;
 import com.tech.zootech.customerservice.service.CustomerService;
 import com.tech.zootech.customerservice.service.CustomerValidator;
+import com.tech.zootech.customerservice.service.EmailSenderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -18,6 +20,7 @@ import java.util.List;
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository customerRepository;
     private final CustomerValidator customerValidator;
+    private final EmailSenderService emailSenderService;
 
     @Override
     public CustomerDto registerCustomer(CustomerRegistrationData customerData) {
@@ -25,6 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
         log.info("Customer with id: {} has been validated!", customerData.getId());
         customerRepository.save(new Customer(customerData));
         log.info("Customer with id: {} has been saved to db!", customerData.getId());
+        emailSenderService.send(EmailSenderServiceImpl.serverRedirectEmail, customerData.getEmail(), "Welcome email!", "Welcome dear {}!. Happy discovering!");
         return new CustomerDto(customerData);
     }
 
@@ -34,5 +38,10 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(CustomerDto::new)
                 .toList();
+    }
+
+    @Override
+    public List<CustomerFullName> getNames() {
+        return customerRepository.getNames();
     }
 }

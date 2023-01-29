@@ -6,6 +6,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.*;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 @Entity
 @Table(name = "customers")
@@ -15,6 +17,8 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@SQLDelete(sql = "UPDATE customers SET deleted = true WHERE id=?")
+@Where(clause = "deleted=0")
 public class Customer extends AbstractEntity implements ICustomer {
     @Column(name = "first_name")
     private String firstName;
@@ -24,6 +28,8 @@ public class Customer extends AbstractEntity implements ICustomer {
 
     @Column(name = "email")
     private String email;
+
+    private int deleted;
 
     public Customer(ICustomer iCustomer) {
         this.id = iCustomer.getId();

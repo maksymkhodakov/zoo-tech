@@ -2,6 +2,7 @@ package com.tech.zootech.customerservice.api;
 
 import com.tech.zootech.customerservice.domain.data.CustomerRegistrationData;
 import com.tech.zootech.customerservice.domain.dto.CustomerDto;
+import com.tech.zootech.customerservice.domain.dto.CustomerFullName;
 import com.tech.zootech.customerservice.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,5 +26,10 @@ public class CustomerController {
     @GetMapping("/all")
     public ResponseEntity<List<CustomerDto>> getAll() {
         return ResponseEntity.ok(customerService.getAll());
+    }
+
+    @GetMapping("/all/names")
+    public ResponseEntity<List<CustomerFullName>> getNames() {
+        return ResponseEntity.ok(customerService.getNames());
     }
 }
