@@ -4,6 +4,7 @@ import com.tech.zootech.customerservice.domain.data.CustomerRegistrationData;
 import com.tech.zootech.customerservice.domain.dto.CustomerDto;
 import com.tech.zootech.customerservice.domain.dto.CustomerFullName;
 import com.tech.zootech.customerservice.service.CustomerService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @PostMapping("/register")
-    public ResponseEntity<CustomerDto> registerCustomer(@RequestBody CustomerRegistrationData customerData) {
+    public ResponseEntity<CustomerDto> registerCustomer(@Valid @RequestBody CustomerRegistrationData customerData) {
         return ResponseEntity.ok(customerService.registerCustomer(customerData));
     }
 
