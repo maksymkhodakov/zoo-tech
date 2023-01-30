@@ -29,7 +29,7 @@ public class SecurityConfig {
                 .disable()
                 .sessionManagement().sessionCreationPolicy(STATELESS)
                 .and()
-                .authorizeHttpRequests().requestMatchers("/").permitAll()
+                .authorizeHttpRequests().requestMatchers("/**").permitAll() // for develop usage
                 .and()
                 .authorizeHttpRequests().requestMatchers("/api/login/**","/api/token/refresh/**").permitAll()
                 .and()

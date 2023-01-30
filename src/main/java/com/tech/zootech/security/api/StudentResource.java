@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/students")
+@RequestMapping("api/students/v1")
 @RequiredArgsConstructor
 public class StudentResource {
     private final StudentService studentService;
 
-    @GetMapping("/get_student")
+    @GetMapping("/get-student")
     public ResponseEntity<StudentDto> get(@RequestParam Long id) {
         return ResponseEntity.ok().body(studentService.get(id));
     }
@@ -24,14 +24,14 @@ public class StudentResource {
         return ResponseEntity.ok().body(studentService.save(studentDto));
     }
 
-    @GetMapping("/get_student_by_name_and_surname")
+    @GetMapping("/get-student-by-name-and-surname")
     public ResponseEntity<StudentDto> getStudentByNameAndSurname(
             @RequestParam(name = "name") String name,
             @RequestParam(name = "surname") String surname) {
         return ResponseEntity.ok().body(studentService.getByNameAndSurname(name, surname));
     }
 
-    @GetMapping("/{surname}")
+    @GetMapping("/student/{surname}")
     public ResponseEntity<List<StudentDto>> getStudentListBySurname(
             @PathVariable(name = "surname") String surname) {
         return ResponseEntity.ok(studentService.getByStudentSurname(surname));

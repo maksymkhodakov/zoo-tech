@@ -23,7 +23,10 @@ public class EmailSenderServiceImpl implements EmailSenderService {
     private final JavaMailSender javaMailSender;
 
     @Autowired
-    public void setServerRedirectEmail(@Value("${spring.mail.username}") String adminEmail) {
+    public void setServerRedirectEmail(
+            @Value("${spring.mail.username}")
+            String adminEmail
+    ) {
         EmailSenderServiceImpl.serverRedirectEmail = adminEmail;
     }
 

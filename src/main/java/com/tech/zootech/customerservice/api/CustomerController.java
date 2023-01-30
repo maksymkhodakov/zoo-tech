@@ -29,7 +29,7 @@ public class CustomerController {
         return ResponseEntity.ok(customerService.getAll());
     }
 
-    @GetMapping("/all/names")
+    @GetMapping("/names")
     public ResponseEntity<List<CustomerFullName>> getNames() {
         return ResponseEntity.ok(customerService.getNames());
     }

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/warfare")
+@RequestMapping("/api/warfare/v1")
 @AllArgsConstructor
 public class WarfareResource {
     private final WarfareService warfareService;

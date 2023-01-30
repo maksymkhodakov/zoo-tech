@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/cupcakes")
+@RequestMapping("/api/cupcakes/v1")
 @RequiredArgsConstructor
 public class CupcakeResource {
     private final CupcakeService cupcakeService;
@@ -20,7 +20,7 @@ public class CupcakeResource {
         return ResponseEntity.ok(cupcakeService.saveCupcake(dto));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("cupcake/{id}")
     ResponseEntity<CupcakeDto> getCupcake(@PathVariable Long id) {
         return ResponseEntity.ok(cupcakeService.getCupcakeById(id));
     }

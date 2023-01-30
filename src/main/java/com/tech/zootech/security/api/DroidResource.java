@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/api/droids")
+@RequestMapping("/api/droids/v1")
 @RequiredArgsConstructor
 public class DroidResource {
     private final DroidService droidService;

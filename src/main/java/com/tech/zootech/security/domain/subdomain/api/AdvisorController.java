@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/advisor/v1")
 @RequiredArgsConstructor
 public class AdvisorController {
     private final AdvisorService advisorService;

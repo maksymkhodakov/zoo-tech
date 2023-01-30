@@ -22,10 +22,9 @@ services:
       - "6969:8080"
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/main_db?useSSL=false",
+        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/main_db",
         "spring.datasource.username" : "root",
         "spring.datasource.password" : "root",
-        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
         "spring.jpa.hibernate.ddl-auto" : "update"
       }'
     volumes:

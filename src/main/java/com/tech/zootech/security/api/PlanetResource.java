@@ -6,7 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("api/planet")
+@RequestMapping("api/planet/v1")
 @RestController
 @RequiredArgsConstructor
 public class PlanetResource {

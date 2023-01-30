@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/continents")
+@RequestMapping("/api/continents/v1")
 @RequiredArgsConstructor
 public class ContinentResource {
     private final ContinentService continentService;
@@ -31,7 +31,7 @@ public class ContinentResource {
         return ResponseEntity.ok().body(continentService.getByPlanet(planetDto));
     }
 
-    @GetMapping("/{continent}")
+    @GetMapping("/continent/{continent}")
     public ResponseEntity<ContinentDto> getContinentByName(@PathVariable("continent") String name) {
         return ResponseEntity.ok().body(continentService.getByName(name));
     }

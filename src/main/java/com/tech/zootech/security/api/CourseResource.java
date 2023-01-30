@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("api/courses")
+@RequestMapping("api/courses/v1")
 @RequiredArgsConstructor
 public class CourseResource {
     private final CourseService courseService;
@@ -31,17 +31,17 @@ public class CourseResource {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/{courseName}")
+    @GetMapping("course/{courseName}")
     public ResponseEntity<CourseDto> getCourseByName(@PathVariable("courseName") String courseName) {
         return ResponseEntity.ok().body(courseService.getByCourseName(courseName));
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/course/{id}")
     public ResponseEntity<CourseDto> getCourseById(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(courseService.getCourseById(id));
     }
 
-    @GetMapping("/{teacherName}")
+    @GetMapping("teacher/{teacherName}")
     public ResponseEntity<List<CourseDto>> getCourseByTeacherName(@PathVariable("teacherName") String teacherName) {
         return ResponseEntity.ok().body(courseService.getByTeacherName(teacherName));
     }

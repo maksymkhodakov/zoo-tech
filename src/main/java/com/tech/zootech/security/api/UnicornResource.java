@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/unicorn")
+@RequestMapping("api/unicorn/v1")
 @RequiredArgsConstructor
 public class UnicornResource {
     private final UnicornService unicornService;
@@ -25,12 +25,12 @@ public class UnicornResource {
         return ResponseEntity.ok().body(unicornService.save(unicornDto));
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/info/{name}")
     public ResponseEntity<UnicornDto> getByName(@PathVariable(name = "name") String name) {
         return ResponseEntity.ok().body(unicornService.getByName(name));
     }
 
-    @GetMapping("/get_by_color")
+    @GetMapping("/get-by-color")
     public ResponseEntity<List<UnicornDto>> getByColor(@RequestParam Color color) {
         return ResponseEntity.ok().body(unicornService.getByColor(color));
     }

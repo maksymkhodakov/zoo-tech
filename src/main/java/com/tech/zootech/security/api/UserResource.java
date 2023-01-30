@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Slf4j
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/v1")
 public class UserResource {
     private final UserService userService;
     private final RefreshTokenUtil refreshTokenUtil;
