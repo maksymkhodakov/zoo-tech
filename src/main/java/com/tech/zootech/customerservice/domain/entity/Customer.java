@@ -4,10 +4,13 @@ import com.tech.zootech.customerservice.domain.interfaces.ICustomer;
 import com.tech.zootech.security.domain.AbstractEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
+
+import java.util.List;
 
 @Entity
 @Table(name = "customers")
@@ -28,6 +31,9 @@ public class Customer extends AbstractEntity implements ICustomer {
 
     @Column(name = "email")
     private String email;
+
+    @OneToMany(mappedBy = "customer")
+    private List<RegistrationHistory> registrationHistory;
 
     private int deleted;
 
