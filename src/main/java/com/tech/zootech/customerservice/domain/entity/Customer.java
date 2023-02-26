@@ -11,6 +11,7 @@ import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "customers")
@@ -42,5 +43,10 @@ public class Customer extends AbstractEntity implements ICustomer {
         this.firstName = iCustomer.getFirstName();
         this.lastName = iCustomer.getLastName();
         this.email = iCustomer.getEmail();
+        this.registrationHistory = Objects.isNull(iCustomer.getRegistrationHistory()) ? null :
+                iCustomer.getRegistrationHistory()
+                        .stream()
+                        .map(RegistrationHistory::new)
+                        .toList();
     }
 }

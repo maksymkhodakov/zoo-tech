@@ -6,23 +6,29 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+import java.util.Objects;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerDto implements ICustomer {
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
+    private List<RegistrationHistoryDTO> registrationHistory;
 
     public CustomerDto(ICustomer iCustomer) {
+        this.id = iCustomer.getId();
         this.firstName = iCustomer.getFirstName();
         this.lastName = iCustomer.getLastName();
         this.email = iCustomer.getEmail();
-    }
-
-    @Override
-    public Long getId() {
-        return null;
+        this.registrationHistory = Objects.isNull(iCustomer.getRegistrationHistory()) ? null :
+                iCustomer.getRegistrationHistory()
+                        .stream()
+                        .map(RegistrationHistoryDTO::new)
+                        .toList();
     }
 }

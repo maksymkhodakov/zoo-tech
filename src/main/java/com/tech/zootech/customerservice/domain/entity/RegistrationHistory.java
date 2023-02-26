@@ -1,6 +1,7 @@
 package com.tech.zootech.customerservice.domain.entity;
 
 import com.tech.zootech.customerservice.domain.enums.RegistrationStatus;
+import com.tech.zootech.customerservice.domain.interfaces.IRegistrationHistory;
 import com.tech.zootech.security.domain.AbstractEntity;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,7 +16,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Entity
 @Table(name = "registration_histories")
-public class RegistrationHistory extends AbstractEntity {
+public class RegistrationHistory extends AbstractEntity implements IRegistrationHistory {
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private RegistrationStatus status;
@@ -23,6 +24,11 @@ public class RegistrationHistory extends AbstractEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @ToString.Exclude
     private Customer customer;
+
+    public RegistrationHistory(IRegistrationHistory history) {
+        this.status = history.getStatus();
+        this.customer = new Customer(history.getCustomer());
+    }
 
     @Override
     public boolean equals(Object o) {
